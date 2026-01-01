@@ -39,7 +39,7 @@ reset value: `0x0000_0000`
 #### Seed Reigster
 | bit | access  | description |
 |:---:|:-------:| :---------: |
-| `[31:0]` | W | SEED |
+| `[31:0]` | RW | SEED |
 
 reset value: `0x0000_0000`
 
