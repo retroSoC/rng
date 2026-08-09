@@ -1,0 +1,13 @@
+[options]
+mode prove
+depth 24
+
+[engines]
+smtbmc bitwuzla
+
+[script]
+read -formal rng_formal.v
+prep -top rng_formal
+
+[files]
+build/formal-src/rng_formal.v

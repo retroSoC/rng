@@ -1,17 +1,27 @@
 # RNG
 
-## Features
-* Internal 32-bit LSFR implemented with max sequence
-* 32-bit programmable seed register
-* Generate one random number per cycle
-* Static synchronous design
-* Full synthesizable
+RNG V2 is an APB4 entropy controller. It accepts qualified 32-bit entropy
+words from a technology-specific source, performs startup and continuous
+duplicate-word checks, and makes accepted words available through a protected
+FIFO and interrupt interface.
 
-FULL vision of datatsheet can be found in [datasheet.md](./doc/datasheet.md).
+The included deterministic source exists only for simulation, integration
+testing, and non-security bring-up. It always reports `qualified=0`; it is not a
+TRNG and must not be used for keys, nonces, challenges, or other security
+material.
 
-## Build and Test
+See [the datasheet](doc/datasheet.md), [integration guide](doc/integration.md),
+and [security guide](doc/security.md) before integrating the controller.
+
+## Build And Test
+
+The default layout expects the Common repository at `../common`.
+
 ```bash
-make comp    # compile code with vcs
-make run     # compile and run test with vcs
-make wave    # open fsdb format waveform with verdi
+make doctor
+make format-check register-check lint
+make test synth formal
 ```
+
+The IP register map is hand-written. `make register-check` compares the RTL and
+C definitions; no register generator is used.
