@@ -89,7 +89,7 @@ test-iverilog: $(IVERILOG_OUT)
 
 test-verilator:
 	@mkdir -p $(VERILATOR_DIR) $(BUILD_DIR)/ccache-tmp $(BUILD_DIR)/tmp
-	CCACHE_DISABLE=1 CCACHE_TEMPDIR=$(BUILD_DIR)/ccache-tmp TMPDIR=$(BUILD_DIR)/tmp \
+	OBJCACHE= CCACHE_DISABLE=1 CCACHE_TEMPDIR=$(BUILD_DIR)/ccache-tmp TMPDIR=$(BUILD_DIR)/tmp \
 	$(VERILATOR) --binary --timing -Wall -Wno-fatal -Wno-DECLFILENAME -Wno-GENUNNAMED \
 	-Wno-TIMESCALEMOD -Wno-UNUSEDSIGNAL -DSV_ASSRT_DISABLE \
 	--Mdir $(VERILATOR_DIR) --top-module apb4_rng_tb -Irtl -I$(COMMON_ROOT)/rtl \
