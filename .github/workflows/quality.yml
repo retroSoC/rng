@@ -20,8 +20,10 @@ jobs:
 
       - name: Install system tools
         run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends --yes clang-format-14 g++ make
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            ccache clang-format-14 g++ libfl2 libgoogle-perftools4 libunwind8 \
+            make mold numactl zlib1g
 
       - name: Install locked dependencies
         run: |
